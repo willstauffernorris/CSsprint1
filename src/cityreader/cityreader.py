@@ -119,14 +119,19 @@ def cityreader_stretch(lat1=userinput1[0], lon1=userinput1[1], lat2=userinput2[0
   else:
     highest_lon = lon1
     lowest_lon = lon2
+  
+  print(highest_lon)
+  print(highest_lat)
+  print(lowest_lon)
+  print(lowest_lat)
 
   # within will hold the cities that fall within the specified region
   within = []
 
   for city in cities:
-    if (city.lat < highest_lat) and (city.lat > lowest_lat) and (city.lon > highest_lon) and (city.lon < lowest_lat):
+    if (city.lat < highest_lat) and (city.lat > lowest_lat) and (city.lon < highest_lon) and (city.lon > lowest_lon):
       within.append(city)
-      print(city.name)
+      print(city.name, city.lat, city.lon)
   return within
 
 
