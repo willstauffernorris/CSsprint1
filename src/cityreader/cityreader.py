@@ -62,7 +62,9 @@ for c in cities:
 # with the `cities` list that holds all the City instances from the `cityreader`
 # function. This function should output all the cities that fall within the 
 # coordinate square.
-#
+
+
+
 # Be aware that the user could specify either a lower-left/upper-right pair of
 # coordinates, or an upper-left/lower-right pair of coordinates. Hint: normalize
 # the input data so that it's always one or the other, then search for cities.
@@ -85,12 +87,35 @@ for c in cities:
 
 # TODO Get latitude and longitude values from the user
 
-def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
-  # within will hold the cities that fall within the specified region
-  within = []
+userinput1 = input("Enter lat1,lon1: 45,-100 or press ENTER") or (45,-100)
+print(f"You entered {userinput1}")
+
+userinput2 = input("Enter lat2,lon2: 32,-120 or press ENTER") or (32,-120)
+print(f"You entered {userinput2}")
+
 
   # TODO Ensure that the lat and lon valuse are all floats
   # Go through each city and check to see if it falls within 
   # the specified coordinates.
 
+def cityreader_stretch(lat1=userinput1[0], lon1=userinput1[1], lat2=userinput2[0], lon2=userinput2[1], cities=[]):
+  lat1 = float(lat1)
+  lon1 = float(lon1)
+  lat2 = float(lat2)
+  lat2 = float(lat2)
+
+  # within will hold the cities that fall within the specified region
+  within = []
+
+  for city in cities:
+    if (city.lat < lat1) and (city.lat > lat2) and (city.lon < lon1) and (city.lon > lon2):
+      within.append(city)
+      print(city.name)
   return within
+
+
+# call my function
+print("These cities are within your coordinates:")
+#cityreader_stretch(cities=cities)
+
+cityreader_stretch(userinput1[0], userinput1[1], userinput2[0], userinput2[1], cities=cities)
