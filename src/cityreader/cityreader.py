@@ -104,11 +104,27 @@ def cityreader_stretch(lat1=userinput1[0], lon1=userinput1[1], lat2=userinput2[0
   lat2 = float(lat2)
   lat2 = float(lat2)
 
+
+## I need to make the normalizer to have this work, but I'm not there yet.
+  if lat1 < lat2:
+    highest_lat = lat2
+    lowest_lat = lat1
+  else:
+    highest_lat = lat1
+    lowest_lat = lat2
+
+  if lon1 < lon2:
+    highest_lon = lon2
+    lowest_lon = lon1
+  else:
+    highest_lon = lon1
+    lowest_lon = lon2
+
   # within will hold the cities that fall within the specified region
   within = []
 
   for city in cities:
-    if (city.lat < lat1) and (city.lat > lat2) and (city.lon < lon1) and (city.lon > lon2):
+    if (city.lat < highest_lat) and (city.lat > lowest_lat) and (city.lon > highest_lon) and (city.lon < lowest_lat):
       within.append(city)
       print(city.name)
   return within
